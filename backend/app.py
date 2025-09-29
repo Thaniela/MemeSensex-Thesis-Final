@@ -22,6 +22,9 @@ def process_predict():
 
     print(f"Processed result: {result}")
 
+    if "error" in result:
+        return jsonify(result), 500
+    
     return jsonify({
         "status": "success",
         "message": "Image processed successfully",

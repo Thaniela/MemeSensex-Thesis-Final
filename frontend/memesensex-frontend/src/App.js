@@ -1,6 +1,8 @@
 import './App.css';
 import logo from './asset/logo.svg';
 import {useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [image, setImage] = useState(null);
@@ -62,6 +64,26 @@ function App() {
 
             const result = await response.json();
             if (!response.ok) {
+              if (result.error) {
+                  toast.error("Error: " + result.error, {
+                    position: "top-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+
+                  setImage(null);
+                  setImageFile(null);
+                  setInputKey(Date.now());
+                  setResults(null);
+                  setIsLoading(false);
+                  setCurrentStage(0);
+                  return;
+                }
               throw new Error(result.error || "Prediction failed.");
             }
 
@@ -109,6 +131,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <ToastContainer /> 
       {/* Navigation Header */}
       <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 text-white py-4 px-6 shadow-lg z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between">

@@ -322,6 +322,19 @@ def run_inference(image_path):
     np_image= np.array(pil_img)
     raw_text, clean_text, confidence= ocr_extract_text(np_image)
 
+    if clean_text == "":
+        return {
+            "error": "This is not a meme. Upload a valid meme image with text.",
+        }
+    
+    elif len(clean_text.split()) < 3:
+        return {
+            "error": "Insufficient text detected in the meme. Please upload a meme with more text. Minimum is 3 words.",
+            "clean_text": clean_text,
+            "raw_text": raw_text,
+            "confidence": confidence
+        }
+
     # Image
     img_tensor = resize_normalize_image(pil_img).to(device)
 
