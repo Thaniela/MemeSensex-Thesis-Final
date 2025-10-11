@@ -240,121 +240,124 @@ function App() {
       {/* How to Use Section */}
       <section
         id="how-to-use"
-        className="pt-28 pb-16 bg-gradient-to-br from-purple-50 to-white"
+        className="pt-24 pb-16 bg-gradient-to-br from-purple-50 to-white"
       >
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-gray-800 mb-3">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h3 className="text-4xl font-bold text-gray-800 mb-4">
               How to Use MemeSenseX
             </h3>
-            <p className="text-gray-600">
-              Follow these simple steps and guidelines to get accurate results
-              from our AI-powered meme classification tool.
+            <p className="text-gray-600 text-lg">
+              Get started with our comprehensive guide and requirements
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left Column - Steps */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-purple-700 mb-4">
-                Simple Steps
-              </h4>
-
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  1
+            <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-7 h-7 bg-purple-500 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
                 </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    Upload Your Meme
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    Click "Choose File" or drag and drop your meme image into
-                    the upload area.
-                  </p>
-                </div>
+                <h4 className="text-2xl font-bold text-gray-800">Steps to Follow</h4>
               </div>
+              <p className="text-gray-600 mb-6 text-base">Follow these simple steps to analyze your memes with AI-powered content detection</p>
+              
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">1</span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Upload Your Meme</h5>
+                    <p className="text-sm text-gray-600">
+                      Click "Choose File" or drag and drop your meme image. Accepts JPG and PNG formats.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  2
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">2</span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Click "Classify Meme"</h5>
+                    <p className="text-sm text-gray-600">
+                      Our AI models will analyze both visual content and text in your meme.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    Click "Classify Meme"
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    Our AI will analyze both the visual content and text in your
-                    meme.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  3
-                </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    View Results
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    Get instant classification results with confidence scores
-                    and detailed analysis.
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">3</span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Review the Results</h5>
+                    <p className="text-sm text-gray-600">
+                      View classification results showing if content is suggestive or safe.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column - Guidelines */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-purple-700 mb-4">
-                Important Guidelines
-              </h4>
-
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  •
+            {/* Right Column - Important Guidelines */}
+            <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-7 h-7 bg-purple-500 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" />
+                  </svg>
                 </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    Meme with Text Required
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    The input should be a meme with text. A pure image input
-                    will not be accepted due to the multimodal nature of the
-                    tool.
-                  </p>
-                </div>
+                <h4 className="text-2xl font-bold text-gray-800">Important Guidelines</h4>
               </div>
+              <p className="text-gray-600 mb-6 text-base">To ensure accurate analysis, please follow these requirements:</p>
+              
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Meme Must Contain Text</h5>
+                    <p className="text-sm text-gray-600">
+                      Input should be a meme with text. Pure images won't be accepted due to multimodal nature.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  •
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Minimum Text Requirements</h5>
+                    <p className="text-sm text-gray-600">
+                      Meme should have at least three meaningful, non-gibberish words for context.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    Meaningful Text Content
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    The meme input should have at least more than three words
-                    and non-gibberish words to give more context to the model.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
-                  •
-                </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-1">
-                    Clear Image Quality
-                  </h5>
-                  <p className="text-sm text-gray-600">
-                    As much as possible, the meme input should not be too blurry
-                    for more accuracy with the OCR text extraction.
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-800 mb-2 text-base">Image Quality Matters</h5>
+                    <p className="text-sm text-gray-600">
+                      Use clear, non-blurry images for better OCR text extraction accuracy.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -369,7 +372,7 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Input Image */}
             <section
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              className="bg-white rounded-2xl shadow-xl overflow-hidden" 
               aria-label="Image Upload Section"
             >
               <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4">
@@ -965,7 +968,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-800 text-white py-3 px-6 w-full">
+      <footer className="bg-[#3C1064] text-white py-3 px-6 w-full">
         <div className="flex items-center justify-center gap-3 text-sm">
           <img src={logo} alt="Logo" className="h-6 w-6" />
           <span className="text-gray-300">|</span>
