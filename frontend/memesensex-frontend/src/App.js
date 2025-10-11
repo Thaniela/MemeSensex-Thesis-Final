@@ -191,45 +191,22 @@ function App() {
                 />
                 {/* Animated Emoji Placeholders */}
                 <div className="absolute inset-0 pointer-events-none">
-                  <div
-                    className="absolute -top-8 left-8 text-3xl animate-bounce z-20"
-                    style={{ animationDelay: "0s", animationDuration: "3s" }}
-                  >
-                    👌
-                  </div>
-                  <div
-                    className="absolute top-15 -right-12 text-5xl animate-bounce z-20"
-                    style={{ animationDelay: "1s", animationDuration: "4s" }}
-                  >
-                    👈
-                  </div>
-                  <div
-                    className="absolute -bottom-8 -left-12 text-4xl animate-bounce z-20"
-                    style={{ animationDelay: "2s", animationDuration: "3.5s" }}
-                  >
-                    👅
-                  </div>
-                  <div
-                    className="absolute bottom-4 -right-8 text-5xl animate-bounce z-20"
-                    style={{
-                      animationDelay: "0.5s",
-                      animationDuration: "2.5s",
-                    }}
-                  >
-                    🍆
-                  </div>
-                  <div
-                    className="absolute top-1/2 -left-16 text-6xl animate-bounce z-20"
-                    style={{ animationDelay: "1.5s", animationDuration: "4s" }}
-                  >
-                    🍑
-                  </div>
-                  <div
-                    className="absolute top-1/4 -right-20 text-3xl animate-bounce z-20"
-                    style={{ animationDelay: "2.5s", animationDuration: "3s" }}
-                  >
-                    💦
-                  </div>
+                  {[
+                    { emoji: "👌", pos: "-top-8 left-8", size: "text-3xl", delay: "0s" },
+                    { emoji: "👈", pos: "top-15 -right-12", size: "text-5xl", delay: "1s" },
+                    { emoji: "👅", pos: "-bottom-8 -left-12", size: "text-4xl", delay: "2s" },
+                    { emoji: "🍆", pos: "bottom-4 -right-8", size: "text-5xl", delay: "0.5s" },
+                    { emoji: "🍑", pos: "top-1/2 -left-16", size: "text-6xl", delay: "1.5s" },
+                    { emoji: "💦", pos: "top-1/4 -right-20", size: "text-3xl", delay: "2.5s" }
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className={`absolute ${item.pos} ${item.size} animate-bounce z-20`}
+                      style={{ animationDelay: item.delay, animationDuration: "3s" }}
+                    >
+                      {item.emoji}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
