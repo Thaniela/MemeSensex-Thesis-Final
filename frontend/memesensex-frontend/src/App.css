@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+/* Toast positioning at the very top */
+.Toastify__toast-container--top-center {
+  top: 10px !important;
+  z-index: 9999 !important;
+}

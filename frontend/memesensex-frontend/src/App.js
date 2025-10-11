@@ -1,6 +1,8 @@
 import "./App.css";
 import logo from "./asset/logo.svg";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -65,7 +67,7 @@ function App() {
         throw new Error(result.error || "Prediction failed.");
       }
 
-      setResults({
+      const classificationResult = {
         classification:
           result.data.prediction === "sexual"
             ? "Explicit Content"
@@ -76,10 +78,30 @@ function App() {
           clean_text: result.data.clean_text,
           probabilities: result.data.probabilities,
         },
-      });
+      };
+
+      setResults(classificationResult);
     } catch (error) {
       console.error(error);
-      alert("Error: " + error.message);
+      if (error.message) {
+        toast.error("This is not a meme. Upload a valid meme image with text.", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        setImage(null);
+        setImageFile(null);
+        setInputKey(Date.now());
+        setResults(null);
+        setIsLoading(false);
+        setCurrentStage(0);
+        return;
+      }
     }
 
     setIsLoading(false);
@@ -976,6 +998,9 @@ function App() {
           </span>
         </div>
       </footer>
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 }
