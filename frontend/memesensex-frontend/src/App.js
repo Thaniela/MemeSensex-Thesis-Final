@@ -89,7 +89,7 @@ function App() {
     } catch (error) {
       console.error(error);
       if (error.message) {
-        toast.error("This is not a meme. Upload a valid meme image with text.", {
+        toast.error("Error: " + error.message, {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
