@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Client } from "@gradio/client";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import HowToUseSection from "./components/HowToUseSection";
@@ -59,29 +60,28 @@ function App() {
     }
 
     try {
-      const formData = new FormData();
-      formData.append("image", imageFile); // <-- use the file from state
-
-      const response = await fetch("http://127.0.0.1:5001/process_predict", {
-        method: "POST",
-        body: formData,
+      // Connect to the Gradio client
+      const client = await Client.connect("daneigh/memesensex-backend");
+      
+      // Make prediction using Gradio client
+      const result = await client.predict("/predict", {
+        image: imageFile
       });
 
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || "Prediction failed.");
-      }
-
+      // Parse the result from Gradio
+      const predictionText = result.data[0]; // Gradio returns data as array
+      
+      // Extract classification from the text response
+      const isExplicit = predictionText.toLowerCase().includes('sexual') || 
+                        predictionText.toLowerCase().includes('explicit');
+      
       const classificationResult = {
-        classification:
-          result.data.prediction === "sexual"
-            ? "Explicit Content"
-            : "Safe Content",
+        classification: isExplicit ? "Explicit Content" : "Safe Content",
         details: {
-          overall: result.data.prediction === "sexual" ? "explicit" : "safe",
-          raw_text: result.data.raw_text,
-          clean_text: result.data.clean_text,
-          probabilities: result.data.probabilities,
+          overall: isExplicit ? "explicit" : "safe",
+          raw_text: predictionText,
+          clean_text: predictionText,
+          probabilities: [isExplicit ? [0.1, 0.9] : [0.9, 0.1]], // Mock probabilities based on result
         },
       };
 
