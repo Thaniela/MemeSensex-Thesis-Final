@@ -68,6 +68,11 @@ function App() {
         image: imageFile
       });
 
+      // ADD DEBUG LOGGING
+      console.log("Raw Gradio result:", result);
+      console.log("Result data:", result.data);
+      console.log("Result data[0]:", result.data[0]);
+
       // Parse the result from Gradio
       const predictionText = result.data[0]; // Gradio returns data as array
       
