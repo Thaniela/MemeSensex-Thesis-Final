@@ -60,25 +60,32 @@ function App() {
     }
 
     try {
-      // Connect to the Gradio client
-      const client = await Client.connect("daneigh/memesensex-backend");
+      // Use direct API call instead of Gradio client
+      const formData = new FormData();
+      formData.append('data', JSON.stringify([imageFile]));
       
-      // Make prediction using Gradio client
-      const result = await client.predict("/predict", {
-        image: imageFile
+      const response = await fetch("https://daneigh-memesensex-backend.hf.space/api/predict", {
+        method: "POST",
+        body: formData
       });
 
-      // ADD DEBUG LOGGING
-      console.log("Raw Gradio result:", result);
-      console.log("Result data:", result.data);
-      console.log("Result data[0]:", result.data[0]);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-      // Parse the result from Gradio
-      const predictionText = result.data[0]; // Gradio returns data as array
+      const result = await response.json();
+      
+      // ADD DEBUG LOGGING
+      console.log("Raw API result:", result);
+      console.log("Result data:", result.data);
+      
+      // Parse the result from API
+      const predictionText = result.data[0]; // API returns data as array
+      console.log("Prediction text:", predictionText);
       
       // Extract classification from the text response
-      const isExplicit = predictionText.toLowerCase().includes('sexual') || 
-                        predictionText.toLowerCase().includes('explicit');
+      const isExplicit = predictionText.toLowerCase().includes('sexual') && 
+                        !predictionText.toLowerCase().includes('non-sexual');
       
       const classificationResult = {
         classification: isExplicit ? "Explicit Content" : "Safe Content",
