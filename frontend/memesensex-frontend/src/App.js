@@ -83,9 +83,20 @@ function App() {
       const predictionText = result.data[0]; // API returns data as array
       console.log("Prediction text:", predictionText);
       
-      // Extract classification from the text response
+      // Extract classification and confidence from the text response
       const isExplicit = predictionText.toLowerCase().includes('sexual') && 
                         !predictionText.toLowerCase().includes('non-sexual');
+      
+      // Extract confidence percentage from text like "Confidence: 100.0%"
+      const confidenceMatch = predictionText.match(/Confidence:\s*(\d+(?:\.\d+)?)/);
+      const confidence = confidenceMatch ? parseFloat(confidenceMatch[1]) : 50; // Default to 50% if not found
+      
+      console.log("Extracted confidence:", confidence);
+      
+      // Convert confidence to probability format
+      const probabilities = isExplicit 
+        ? [1 - confidence/100, confidence/100]  // [non-sexual prob, sexual prob]
+        : [confidence/100, 1 - confidence/100]; // [non-sexual prob, sexual prob]
       
       const classificationResult = {
         classification: isExplicit ? "Explicit Content" : "Safe Content",
@@ -93,7 +104,7 @@ function App() {
           overall: isExplicit ? "explicit" : "safe",
           raw_text: predictionText,
           clean_text: predictionText,
-          probabilities: [isExplicit ? [0.1, 0.9] : [0.9, 0.1]], // Mock probabilities based on result
+          probabilities: [probabilities], // Use real probabilities from model
         },
       };
 
