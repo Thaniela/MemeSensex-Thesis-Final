@@ -60,27 +60,18 @@ function App() {
     }
 
     try {
-      // Use direct API call instead of Gradio client
-      const formData = new FormData();
-      formData.append('data', JSON.stringify([imageFile]));
+      // Use Gradio Client for proper image serialization
+      const client = await Client.connect("https://daneigh-msx-backend.hf.space/");
       
-      const response = await fetch("https://daneigh-memesensex-backend.hf.space/api/predict", {
-        method: "POST",
-        body: formData
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
+      // Use the default endpoint (fn_index 0) which is the first function in Gradio
+      const result = await client.predict(0, [imageFile]);
       
       // ADD DEBUG LOGGING
       console.log("Raw API result:", result);
       console.log("Result data:", result.data);
       
       // Parse the result from API
-      const predictionText = result.data[0]; // API returns data as array
+      const predictionText = result.data; // Gradio client returns data directly
       console.log("Prediction text:", predictionText);
       
       // Extract classification and confidence from the text response
