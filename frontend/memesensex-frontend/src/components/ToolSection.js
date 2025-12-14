@@ -359,11 +359,11 @@ const ToolSection = ({
                               : "text-red-600"
                           }`}
                         >
-                          {Math.round(
+                          {(
                             (results.details.overall === "safe"
                               ? results.details.probabilities[0][0]
                               : results.details.probabilities[0][1]) * 100
-                          )}
+                          ).toFixed(1)}
                           %
                         </span>
                       </div>
@@ -377,11 +377,11 @@ const ToolSection = ({
                               : "bg-gradient-to-r from-red-500 to-red-600"
                           }`}
                           style={{
-                            width: `${Math.round(
+                            width: `${(
                               (results.details.overall === "safe"
                                 ? results.details.probabilities[0][0]
                                 : results.details.probabilities[0][1]) * 100
-                            )}%`,
+                            ).toFixed(1)}%`,
                           }}
                         ></div>
                       </div>
