@@ -60,18 +60,20 @@ function App() {
     }
 
     try {
-      // Use Gradio Client for proper image serialization
-      const client = await Client.connect("https://daneigh-msx-backend.hf.space/");
-      
-      // Use the default endpoint (fn_index 0) which is the first function in Gradio
-      const result = await client.predict(0, [imageFile]);
-      
+      // Connect to Hugging Face Space using Space ID
+      const client = await Client.connect("daneigh/MSX-Backend"); 
+
+      // Call the classify_meme endpoint with the image file
+      const result = await client.predict("/classify_meme", { 
+        image: imageFile, 
+      });
+
       // ADD DEBUG LOGGING
       console.log("Raw API result:", result);
       console.log("Result data:", result.data);
       
-      // Parse the result from API
-      const predictionText = result.data; // Gradio client returns data directly
+      // Parse the result from API - Gradio returns data as an array
+      const predictionText = result.data[0]; // Get first element from array
       console.log("Prediction text:", predictionText);
       
       // Extract classification and confidence from the text response
