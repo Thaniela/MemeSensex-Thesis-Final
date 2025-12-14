@@ -75,6 +75,25 @@ function App() {
       // Parse the result from API - Gradio returns data as an array
       const predictionText = result.data[0]; // Get first element from array
       console.log("Prediction text:", predictionText);
+      console.log("Checking if starts with Error:", predictionText.startsWith('Error:'));
+      
+      // Check if the result is an error message
+      if (predictionText.startsWith('Error:')) {
+        console.log("Error detected, showing toast and returning");
+        toast.error(predictionText, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+        setIsLoading(false);
+        setCurrentStage(0);
+        return;
+      }
       
       // Extract classification and confidence from the text response
       const isExplicit = predictionText.toLowerCase().includes('sexual') && 
